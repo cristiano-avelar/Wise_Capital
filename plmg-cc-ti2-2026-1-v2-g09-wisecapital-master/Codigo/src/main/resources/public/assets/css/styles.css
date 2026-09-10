@@ -1,0 +1,309 @@
+:root {
+  --sidebar-width: 250px;
+  --primary-blue: #002d5b; /* Azul do projeto Wise Capital */
+  --hover-blue: #004080;
+  --white: #ffffff;
+  --text-light: #e0e0e0;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  font-family: Arial, sans-serif;
+  background-color: #f4f7f6;
+}
+
+/* O Menu Lateral */
+.sidebar {
+  width: var(--sidebar-width);
+  height: 100vh;
+  background-color: var(--primary-blue);
+  color: var(--white);
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar-header {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-header img {
+  width: 40px;
+  height: 40px;
+}
+
+.sidebar-header h2 {
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+/* Lista de Links */
+.sidebar-links {
+  list-style: none;
+  padding: 20px 0;
+  margin: 0;
+  flex-grow: 1; /* Preenche o espaço vazio, empurrando o footer para baixo */
+}
+
+.sidebar-links li {
+  padding: 0;
+}
+
+.sidebar-links a {
+  display: flex;
+  align-items: center;
+  padding: 15px 25px;
+  color: var(--text-light);
+  text-decoration: none;
+  font-size: 16px;
+  gap: 15px;
+  transition: background 0.3s;
+}
+
+.sidebar-links a:hover,
+.sidebar-links li.active a {
+  background-color: var(--hover-blue);
+  color: var(--white);
+  border-left: 4px solid #00d4ff; /* Detalhe visual na aba ativa */
+}
+
+/* Rodapé do Menu */
+.sidebar-footer {
+  padding: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+}
+
+.btn-logout {
+  background: transparent;
+  border: 1px solid var(--text-light);
+  color: var(--text-light);
+  padding: 8px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.btn-logout:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--white);
+}
+
+/* --- Área Principal da Página --- */
+.main-content {
+  /* Empurra o conteúdo para não ficar atrás do menu lateral */
+  margin-left: var(--sidebar-width);
+  padding: 40px;
+  width: calc(100% - var(--sidebar-width));
+  box-sizing: border-box;
+
+}
+/* FAQ */
+
+.faq-card {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.faq-card h3 {
+  margin-top: 0;
+  color: var(--primary-blue);
+}
+
+.faq-card p {
+  color: #333;
+  line-height: 1.5;
+}
+.faq-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.faq-form input,
+.faq-form textarea {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.faq-form button,
+.faq-card button {
+  background: var(--primary-blue);
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.faq-card button {
+  margin-top: 10px;
+}
+.faq-card button {
+  margin-top: 10px;
+  background: crimson;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+/* Reset básico e tipografia limpa */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', 'Segoe UI', sans-serif; /* Usando Poppins para um visual limpo, mas Segoe UI como fallback */
+}
+
+body {
+    background-color: #f4f4f4; /* Fundo cinza muito claro */
+}
+
+/* Layout Principal e Título */
+.main-content {
+    margin-left: 250px; /* Alinha com a sidebar */
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 {
+    font-size: 2.5rem;
+    color: #333;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 50px;
+}
+
+/* Grid do Quiz - Flexbox para alinhamento horizontal */
+.quiz-grid {
+    display: flex;
+    flex-wrap: wrap; /* Permite quebrar linha se não couber */
+    justify-content: center; /* Centraliza os cartões */
+    gap: 30px; /* Espaço entre os cartões */
+    width: 100%;
+    max-width: 1200px; /* Limita a largura máxima */
+}
+
+/* Estilo do Cartão de Quiz Individual */
+.quiz-card {
+    background: #fff;
+    border: 1px solid #333; /* Traço fino e escuro */
+    width: 250px;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Sombra sutil */
+    transition: transform 0.2s ease;
+}
+
+.quiz-card:hover {
+    transform: translateY(-5px); /* Efeito de elevação sutil */
+}
+
+/* Parte Superior (Ícone) */
+.quiz-card-icon-container {
+    flex-grow: 1; /* Ocupa o espaço disponível */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Os ícones são desenhados como traços finos SVG para maior precisão */
+.quiz-card-icon {
+    width: 80px;
+    height: 80px;
+    stroke: #333;
+    stroke-width: 1.5; /* Traço fino */
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none; /* Sem preenchimento */
+}
+
+/* Parte Inferior (Rodapé/Informação) */
+.quiz-card-info {
+    border-top: 1px solid #333; /* Linha horizontal fina */
+    padding: 15px 20px;
+    text-align: left; /* Alinhamento à esquerda conforme a imagem */
+}
+
+.quiz-card-info h3 {
+    font-size: 1.2rem;
+    color: #333;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.quiz-card-info p {
+    font-size: 1rem;
+    color: #666;
+}
+
+/* Estados de Quiz (para alterar o ícone) */
+.quiz-card.checked .quiz-card-icon path {
+    stroke-dashoffset: 0;
+    transition: stroke-dashoffset 0.5s ease-in-out;
+}
+
+/* Estilo do Botão de Adição */
+.btn-add-quiz {
+    background: #fff;
+    border: 1px solid #333; /* Círculo com traço fino */
+    border-radius: 50%; /* Círculo perfeito */
+    width: 120px;
+    height: 120px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    margin-top: calc(125px - 60px); /* Alinha verticalmente com o centro dos cartões (250px/2 - 120px/2) */
+}
+
+.btn-add-quiz:hover {
+    background-color: #eee;
+    transform: scale(1.05); /* Sutil aumento */
+}
+
+.btn-add-quiz-plus {
+    width: 60px;
+    height: 60px;
+    stroke: #333;
+    stroke-width: 1.5; /* Sinal de adição com traço fino */
+    stroke-linecap: round;
+    fill: none;
+}

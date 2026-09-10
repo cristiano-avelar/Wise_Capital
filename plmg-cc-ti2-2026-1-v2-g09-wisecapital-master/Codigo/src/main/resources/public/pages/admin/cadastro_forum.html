@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wise Capital - Criar Publicação</title>
+    <link rel="stylesheet" href="../../assets/css/styles.css" />
+    <link rel="stylesheet" href="../../assets/css/forum.css" />
+    <style>
+      .form-container {
+        max-width: 600px;
+        margin: 40px auto;
+        padding: 30px;
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+      .form-group {
+        margin-bottom: 20px;
+      }
+      .form-group label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 8px;
+        color: #333;
+      }
+      .form-group input[type="text"],
+      .form-group textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 14px;
+        box-sizing: border-box;
+      }
+      .form-group textarea {
+        resize: vertical;
+        min-height: 150px;
+      }
+      .form-group p.hint {
+        font-size: 12px;
+        color: #666;
+        margin-top: 4px;
+      }
+      .btn-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .btn-submit {
+        background-color: #0056b3;
+        color: white;
+        padding: 12px 24px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: bold;
+      }
+      .btn-submit:hover {
+        background-color: #004085;
+      }
+      .btn-cancel {
+        color: #666;
+        text-decoration: none;
+      }
+      .btn-cancel:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="form-container">
+      <h2>Criar uma nova publicação</h2>
+      <p style="color: #666; margin-bottom: 20px">
+        Compartilhe suas dúvidas, análises ou ideias com a comunidade.
+      </p>
+
+      <form id="form-novo-topico">
+        <div class="form-group">
+          <label for="titulo">Título *</label>
+          <input
+            type="text"
+            id="titulo"
+            placeholder="Seja descritivo no seu título"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="imagemUrl">URL da Imagem (Opcional)</label>
+          <input
+            type="text"
+            id="imagemUrl"
+            placeholder="Cole o link de uma imagem (ex: https://.../foto.jpg)"
+          />
+          <p class="hint">
+            Se você adicionar uma imagem, ela será o destaque do card no feed
+            principal!
+          </p>
+        </div>
+
+        <div class="form-group">
+          <label for="conteudo">Texto do assunto *</label>
+          <textarea
+            id="conteudo"
+            placeholder="Escreva aqui o texto completo sobre o que você quer falar..."
+            required
+          ></textarea>
+        </div>
+
+        <div class="btn-container">
+          <a href="index.html" class="btn-cancel">Cancelar</a>
+          <button type="submit" class="btn-submit">Publicar</button>
+        </div>
+      </form>
+    </div>
+
+    <script>
+      document
+        .getElementById("form-novo-topico")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+
+          // Pegando os valores digitados pelo usuário
+          const titulo = document.getElementById("titulo").value;
+          const imagemUrl = document.getElementById("imagemUrl").value;
+          const conteudo = document.getElementById("conteudo").value;
+
+          // Simulação de Usuário Logado:
+          // No seu sistema real, você pode pegar o id do usuário do localStorage ou da sessão.
+          // Se você já salva o usuário logado no localStorage após o login, use:
+          // const usuarioLogado = JSON.parse(localStorage.getItem('usuario'));
+          // const usuarioId = usuarioLogado ? usuarioLogado.id : 1;
+          const usuarioId = 1;
+
+          // Criando os parâmetros para enviar via URL (URLSearchParams) correspondente ao queryParams do Spark
+          const params = new URLSearchParams();
+          params.append("usuarioId", usuarioId);
+          params.append("titulo", titulo);
+          params.append("conteudo", conteudo);
+          params.append("imagemUrl", imagemUrl);
+
+          try {
+            // Fazendo a requisição POST para o seu backend Java
+            const response = await fetch("http://localhost:8080/forum/insert", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+              },
+              body: params,
+            });
+
+            if (response.ok) {
+              alert("Publicação criada com sucesso!");
+              window.location.href = "index.html"; // Redireciona de volta para o feed do fórum
+            } else {
+              alert("Erro ao criar a publicação. Tente novamente.");
+            }
+          } catch (error) {
+            console.error("Erro na conexão com o servidor:", error);
+            alert("Não foi possível conectar ao servidor backend.");
+          }
+        });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="pt-PT">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Criar Tópico</title>
+    <link rel="stylesheet" href="../../assets/css/styles.css" />
+    <link rel="stylesheet" href="../../assets/css/forum.css" />
+    <script type="module" src="../../js/modules/sidebar.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <nav class="sidebar">
+      <div class="sidebar-header">
+        <img src="../../assets/img/logoazul.jpg" alt="Logo Wise Capital" />
+        <h2>Wise Capital</h2>
+      </div>
+
+      <ul class="sidebar-links">
+        <li>
+          <a href="../../index.html"><i class="fas fa-home"></i> Início</a>
+        </li>
+        <li>
+          <a href="../trilha/index.html"
+            ><i class="fas fa-map-signs"></i> Trilha</a
+          >
+        </li>
+        <li class="active">
+          <a href="../forum/index.html"
+            ><i class="fas fa-comments"></i> Fórum</a
+          >
+        </li>
+        <li>
+          <a href="../simulador/index.html"
+            ><i class="fas fa-chart-line"></i> Simulador</a
+          >
+        </li>
+        <li>
+          <a href="../biblioteca/index.html"
+            ><i class="fas fa-book-open"></i> Biblioteca</a
+          >
+        </li>
+        <li>
+          <a href="../noticias/index.html"
+            ><i class="fas fa-newspaper"></i> Notícias</a
+          >
+        </li>
+        <li>
+          <a href="../faq/index.html"
+            ><i class="fas fa-question-circle"></i> FAQ</a
+          >
+        </li>
+      </ul>
+
+      <div class="sidebar-footer">
+        <div class="user-info">
+          <i class="fas fa-user-circle"></i>
+          <span id="user-name">Carregando...</span>
+        </div>
+        <button id="btn-logout" class="btn-logout">
+          <i class="fas fa-sign-out-alt"></i> Sair
+        </button>
+      </div>
+    </nav>
+
+    <main class="main-content">
+      <div class="form-container">
+        <h2>Criar Discussão</h2>
+        <form id="form-topico">
+          <input type="text" id="titulo" placeholder="Título" required />
+          <input
+            type="text"
+            id="imagemUrl"
+            placeholder="URL da Imagem (Opcional)"
+          />
+          <textarea
+            id="conteudo"
+            placeholder="Texto da discussão..."
+            rows="6"
+            required
+          ></textarea>
+          <button type="submit" class="btn-submit">Publicar</button>
+          <a href="index.html" class="btn-cancel">Cancelar</a>
+        </form>
+      </div>
+    </main>
+
+    <script type="module" src="../../js/modules/forumNovo.js"></script>
+  </body>
+</html>

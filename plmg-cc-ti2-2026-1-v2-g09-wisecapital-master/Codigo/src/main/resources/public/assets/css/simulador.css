@@ -1,0 +1,66 @@
+/* Estilos específicos do Simulador adaptados para o Wise Capital */
+.calculcorpo {
+  background: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  margin-bottom: 30px;
+}
+.form-columns {
+  display: flex;
+  gap: 30px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+.form-column {
+  flex: 1;
+  min-width: 300px;
+}
+.form-group {
+  margin-bottom: 20px;
+}
+.form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #1e293b;
+}
+.input-wrapper input,
+.rentabilidade-group select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+.rentabilidade-group {
+  display: flex;
+  gap: 10px;
+}
+.rentabilidade-group .input-wrapper {
+  flex: 2;
+}
+.rentabilidade-group select {
+  flex: 1;
+}
+.form-group-resultado {
+  background: #f8fafc;
+  padding: 20px;
+  border-radius: 8px;
+  border-left: 5px solid #002d5b;
+  margin-top: 20px;
+}
+.resultado-label {
+  display: block;
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+}
+.resultado-label strong {
+  color: #002d5b;
+  font-size: 1.3rem;
+}
+.radio-group-row {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+}

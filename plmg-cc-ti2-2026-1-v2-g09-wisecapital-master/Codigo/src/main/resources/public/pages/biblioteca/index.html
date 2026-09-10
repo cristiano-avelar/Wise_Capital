@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Biblioteca - Wise Capital</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link rel="stylesheet" href="../../assets/css/styles.css" />
+    <link rel="stylesheet" href="../../assets/css/biblioteca.css" />
+  </head>
+  <body>
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <img src="../../assets/img/logoazul.jpg" alt="Logo" class="logo" />
+        <h2>Wise Capital</h2>
+      </div>
+      <ul class="sidebar-links">
+        <li>
+          <a href="../../index.html"><i class="fas fa-home"></i> Início</a>
+        </li>
+        <li>
+          <a href="../trilha/index.html"
+            ><i class="fas fa-map-signs"></i> Trilha</a
+          >
+        </li>
+        <li>
+          <a href="../forum/index.html"
+            ><i class="fas fa-comments"></i> Fórum</a
+          >
+        </li>
+        <li>
+          <a href="../simulador/index.html"
+            ><i class="fas fa-chart-line"></i> Simulador</a
+          >
+        </li>
+        <li class="active">
+          <a href="./index.html"><i class="fas fa-book-open"></i> Biblioteca</a>
+        </li>
+        <li>
+          <a href="../noticias/index.html"
+            ><i class="fas fa-newspaper"></i> Notícias</a
+          >
+        </li>
+        <li>
+          <a href="../faq/index.html"
+            ><i class="fas fa-question-circle"></i> FAQ</a
+          >
+        </li>
+      </ul>
+      <div class="sidebar-footer">
+        <div class="user-info">
+          <i class="fas fa-user-circle"></i>
+          <span id="user-name">Carregando...</span>
+        </div>
+        <button id="btn-logout" class="btn-logout">
+          <i class="fas fa-sign-out-alt"></i> Sair
+        </button>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <div class="biblioteca-header">
+        <h1>Biblioteca de Conteúdos</h1>
+        <a
+          href="../admin/cadastro_biblioteca.html"
+          id="btn-cadastro-midia"
+          class="btn-filtro"
+          style="display: none; background: #22c55e; color: white; border: none"
+        >
+          <i class="fas fa-plus"></i> Novo Material
+        </a>
+      </div>
+
+      <div class="filtros-container">
+        <button class="btn-filtro active" data-tipo="TODOS">Todos</button>
+        <button class="btn-filtro" data-tipo="TEXTO">
+          <i class="fas fa-file-alt"></i> Artigos
+        </button>
+        <button class="btn-filtro" data-tipo="VIDEO">
+          <i class="fas fa-play-circle"></i> Vídeos
+        </button>
+      </div>
+
+      <div class="biblioteca-grid" id="biblioteca-list"></div>
+    </main>
+
+    <script type="module" src="../../js/modules/bibliotecaUI.js"></script>
+    <script type="module" src="../../js/modules/sidebar.js"></script>
+  </body>
+</html>

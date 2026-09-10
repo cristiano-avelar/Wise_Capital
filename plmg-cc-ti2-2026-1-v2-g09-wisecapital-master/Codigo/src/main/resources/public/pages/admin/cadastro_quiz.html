@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Wise Capital - Criar/Editar Quiz</title>
+    <link rel="stylesheet" href="../../assets/css/styles.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        .admin-container { max-width: 900px; margin: 40px auto; padding: 20px; background: #f9f9f9; border-radius: 12px; }
+        .pergunta-card { background: white; padding: 20px; margin-bottom: 20px; border-left: 5px solid #002d5b; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .opcoes-grupo { margin-left: 20px; }
+        .hidden { display: none; }
+        input, select, textarea { width: 100%; padding: 10px; margin: 5px 0 15px 0; border: 1px solid #ccc; border-radius: 4px; }
+        .btn-add { background: #28a745; color: white; padding: 10px; border: none; cursor: pointer; border-radius: 4px; }
+        .btn-save { background: #002d5b; color: white; width: 100%; padding: 15px; border: none; font-size: 1.2rem; cursor: pointer; margin-top: 20px; border-radius: 4px; }
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+        <h1 id="page-title"><i class="fas fa-edit"></i> Novo Quiz</h1>
+        <label>Título do Quiz:</label>
+        <input type="text" id="quiz-titulo" placeholder="Ex: Introdução à Renda Fixa">
+
+        <div id="lista-perguntas"></div>
+
+        <button type="button" class="btn-add" onclick="adicionarPergunta()">+ Adicionar Pergunta</button>
+        <button type="button" id="btn-save-quiz" class="btn-save" onclick="salvarQuiz()">SALVAR QUIZ COMPLETO</button>
+    </div>
+
+    <script>
+        let contagemPerguntas = 0;
+        
+        // Verifica se é edição
+        const urlParams = new URLSearchParams(window.location.search);
+        const editId = urlParams.get('edit');
+        const editTitulo = urlParams.get('titulo');
+
+        document.addEventListener("DOMContentLoaded", async () => {
+            if (editId) {
+                // Modo Edição
+                document.getElementById('page-title').innerHTML = `<i class="fas fa-pencil-alt"></i> Editar Quiz ${editId}`;
+                document.getElementById('btn-save-quiz').innerText = "ATUALIZAR QUIZ COMPLETO";
+                document.getElementById('quiz-titulo').value = editTitulo || "";
+
+                try {
+                    const response = await fetch(`http://localhost:8080/quiz/${editId}/perguntas`);
+                    if (response.ok) {
+                        const perguntas = await response.json();
+                        carregarPerguntasNaTela(perguntas);
+                    }
+                } catch (error) {
+                    console.error("Erro ao buscar perguntas para edição", error);
+                }
+            } else {
+                // Modo Criação: Adiciona uma pergunta vazia por padrão
+                adicionarPergunta();
+            }
+        });
+
+        function adicionarPergunta() {
+            contagemPerguntas++;
+            const div = document.createElement('div');
+            div.className = 'pergunta-card';
+            div.innerHTML = `
+                <h3>Pergunta ${contagemPerguntas}</h3>
+                <textarea class="p-texto" placeholder="Enunciado da pergunta"></textarea>
+                <label>Tipo:</label>
+                <select class="p-tipo" onchange="toggleOpcoes(this, ${contagemPerguntas})">
+                    <option value="FECHADA">Fechada (Múltipla Escolha)</option>
+                    <option value="ABERTA">Aberta (Correção por IA)</option>
+                </select>
+                <div id="opcoes-${contagemPerguntas}" class="opcoes-grupo">
+                    <label>Alternativas (Marque a correta):</label>
+                    <input type="radio" name="correta-${contagemPerguntas}" value="0" checked> <input type="text" class="opt-text" placeholder="Opção 1">
+                    <input type="radio" name="correta-${contagemPerguntas}" value="1"> <input type="text" class="opt-text" placeholder="Opção 2">
+                    <input type="radio" name="correta-${contagemPerguntas}" value="2"> <input type="text" class="opt-text" placeholder="Opção 3">
+                </div>
+                <label>Explicação (Feedback):</label>
+                <textarea class="p-explicacao" placeholder="Por que esta é a resposta correta?"></textarea>
+            `;
+            document.getElementById('lista-perguntas').appendChild(div);
+        }
+
+        function toggleOpcoes(select, id) {
+            const div = document.getElementById(`opcoes-${id}`);
+            div.className = (select.value === "ABERTA") ? "hidden" : "opcoes-grupo";
+        }
+
+        // Preenche o formulário automaticamente
+        function carregarPerguntasNaTela(perguntas) {
+            perguntas.forEach(p => {
+                adicionarPergunta(); // Cria o bloco HTML
+                const card = document.querySelectorAll('.pergunta-card')[contagemPerguntas - 1];
+                
+                card.querySelector('.p-texto').value = p.pergunta;
+                card.querySelector('.p-tipo').value = p.tipo;
+                card.querySelector('.p-explicacao').value = p.explicacao || "";
+                
+                toggleOpcoes(card.querySelector('.p-tipo'), contagemPerguntas);
+
+                if (p.tipo === "FECHADA" && p.opcoes) {
+                    const optTextos = card.querySelectorAll('.opt-text');
+                    const radios = card.querySelectorAll(`input[name="correta-${contagemPerguntas}"]`);
+                    
+                    p.opcoes.forEach((opcao, i) => {
+                        if (optTextos[i]) optTextos[i].value = opcao.texto;
+                        // Verifica se o ID desta opção corresponde ao ID da opção correta salva no banco
+                        if (opcao.id === p.correta) {
+                            radios[i].checked = true;
+                        }
+                    });
+                }
+            });
+        }
+
+        async function salvarQuiz() {
+            const quiz = {
+                titulo: document.getElementById('quiz-titulo').value,
+                perguntas: []
+            };
+
+            const cards = document.querySelectorAll('.pergunta-card');
+            cards.forEach((card, index) => {
+                const tipo = card.querySelector('.p-tipo').value;
+                const perguntaObj = {
+                    texto: card.querySelector('.p-texto').value,
+                    tipo: tipo,
+                    explicacao: card.querySelector('.p-explicacao').value,
+                    opcoes: []
+                };
+
+                if (tipo === "FECHADA") {
+                    const optTextos = card.querySelectorAll('.opt-text');
+                    const corretaIndex = card.querySelector(`input[name="correta-${index+1}"]:checked`).value;
+                    optTextos.forEach((opt, i) => {
+                        perguntaObj.opcoes.push({ texto: opt.value, correta: i == corretaIndex });
+                    });
+                }
+                quiz.perguntas.push(perguntaObj);
+            });
+
+            // Define qual URL e qual Método usar (Cadastrar Novo vs Atualizar Existente)
+            let url = 'http://localhost:8080/quiz/cadastrar';
+            let method = 'POST';
+
+            if (editId) {
+                url = `http://localhost:8080/quiz/${editId}/atualizar`;
+                method = 'POST'; // Usaremos POST para atualização para simplificar
+            }
+
+            const resp = await fetch(url, {
+                method: method,
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(quiz)
+            });
+
+            if (resp.ok) {
+                alert(editId ? "Quiz atualizado com sucesso!" : "Quiz cadastrado com sucesso!");
+                window.location.href = "../trilha/index.html";
+            } else {
+                alert("Ocorreu um erro ao salvar.");
+            }
+        }
+    </script>
+</body>
+</html>

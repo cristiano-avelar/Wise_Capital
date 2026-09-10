@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wise Capital - Diagnóstico de Investimentos</title>
+    <link rel="stylesheet" href="../../../assets/css/styles.css" />
+    <link rel="stylesheet" href="../../../assets/css/formia.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="questionario-container">
+      <div class="questionario-header">
+        <img
+          src="/Codigo/src/main/resources/public/assets/img/logoazul.jpg"
+          alt="Logo Wise Capital"
+        />
+        <h1>Diagnóstico Inicial</h1>
+        <p>
+          Responda as perguntas abaixo para que nossa Inteligência Artificial
+          avalie seu nível de conhecimento e personalize sua Trilha!
+        </p>
+      </div>
+
+      <form id="form-diagnostico">
+        <div class="pergunta-grupo">
+          <label class="titulo-pergunta"
+            >1. Onde você guardaria o dinheiro da sua "Reserva de
+            Emergência"?</label
+          >
+          <div class="opcoes">
+            <label
+              ><input
+                type="radio"
+                name="reserva_emergencia"
+                value="Poupanca ou CDB Liquidez Diaria"
+                required
+              />
+              Na Poupança ou em um CDB de Liquidez Diária.</label
+            >
+            <label
+              ><input type="radio" name="reserva_emergencia" value="Acoes" /> Em
+              Ações de boas empresas pagadoras de dividendos.</label
+            >
+            <label
+              ><input
+                type="radio"
+                name="reserva_emergencia"
+                value="Criptomoedas"
+              />
+              Em Bitcoin ou outras Criptomoedas.</label
+            >
+            <label
+              ><input type="radio" name="reserva_emergencia" value="Nao_sei" />
+              Não sei o que é Reserva de Emergência.</label
+            >
+          </div>
+        </div>
+
+        <div class="pergunta-grupo">
+          <label class="titulo-pergunta"
+            >2. Qual a principal diferença entre Renda Fixa e Renda
+            Variável?</label
+          >
+          <div class="opcoes">
+            <label
+              ><input
+                type="radio"
+                name="diferenca_renda"
+                value="Fixa tem garantia de retorno, variavel oscila"
+                required
+              />
+              Na Renda Fixa você sabe como a rentabilidade será calculada no
+              momento da aplicação, enquanto na Renda Variável o retorno é
+              imprevisível.</label
+            >
+            <label
+              ><input
+                type="radio"
+                name="diferenca_renda"
+                value="Fixa é para rico, variavel para pobre"
+              />
+              Renda Fixa exige muito dinheiro para começar, enquanto Renda
+              Variável permite começar com pouco.</label
+            >
+            <label
+              ><input
+                type="radio"
+                name="diferenca_renda"
+                value="Fixa rende mais que variavel"
+              />
+              Renda Fixa sempre rende mais que a Renda Variável no longo
+              prazo.</label
+            >
+          </div>
+        </div>
+
+        <div class="pergunta-grupo">
+          <label class="titulo-pergunta"
+            >3. Se um investimento seu caísse 20% em um único mês, o que você
+            faria?</label
+          >
+          <div class="opcoes">
+            <label
+              ><input
+                type="radio"
+                name="perfil_risco"
+                value="Venderia tudo desesperado"
+                required
+              />
+              Venderia tudo imediatamente para não perder mais dinheiro.</label
+            >
+            <label
+              ><input
+                type="radio"
+                name="perfil_risco"
+                value="Esperaria recuperar"
+              />
+              Ficaria preocupado, mas esperaria o mercado se recuperar.</label
+            >
+            <label
+              ><input type="radio" name="perfil_risco" value="Compraria mais" />
+              Analisaria o motivo da queda e, se a empresa continuasse boa,
+              compraria mais aproveitando a "promoção".</label
+            >
+          </div>
+        </div>
+
+        <div class="pergunta-grupo">
+          <label class="titulo-pergunta"
+            >4. Explique com suas palavras: O que são Juros Compostos e como
+            eles afetam seus investimentos no longo prazo?</label
+          >
+          <textarea
+            name="juros_compostos_txt"
+            placeholder="Escreva sua resposta aqui. Não se preocupe em estar 100% certo, use suas próprias palavras..."
+            required
+          ></textarea>
+        </div>
+
+        <div class="pergunta-grupo">
+          <label class="titulo-pergunta"
+            >5. Quais são os seus maiores objetivos financeiros para os próximos
+            5 a 10 anos?</label
+          >
+          <textarea
+            name="objetivos_txt"
+            placeholder="Ex: Comprar um carro, atingir a independência financeira, pagar dívidas, etc..."
+            required
+          ></textarea>
+        </div>
+
+        <button type="submit" class="btn-enviar">
+          Enviar para a IA Analisar <i class="fas fa-robot"></i>
+        </button>
+      </form>
+    </div>
+
+    <script type="module" src="../../../js/services/questionario.js"></script>
+  </body>
+</html>

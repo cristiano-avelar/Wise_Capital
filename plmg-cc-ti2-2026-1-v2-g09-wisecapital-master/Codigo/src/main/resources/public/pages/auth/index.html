@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wise Capital - Login e Registro</title>
+    <link rel="stylesheet" href="../../assets/css/auth.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="auth-container">
+      <div class="auth-info">
+        <img src="../../assets/img/logoazul.jpg" alt="Wise Capital Logo" />
+        <h1>Wise Capital</h1>
+        <p>Educação financeira de forma simples e gamificada.</p>
+      </div>
+
+      <div class="auth-box">
+        <form id="login-form" class="auth-form">
+          <h2>Bem-vindo de volta</h2>
+          <div class="input-group">
+            <i class="fas fa-user"></i>
+            <input
+              type="text"
+              name="login"
+              placeholder="Seu usuário"
+              required
+            />
+          </div>
+          <div class="input-group">
+            <i class="fas fa-lock"></i>
+            <input
+              type="password"
+              name="senha"
+              placeholder="Sua senha"
+              required
+            />
+          </div>
+          <button type="submit" class="btn-primary">Entrar</button>
+          <p>
+            Não tem uma conta? <a href="#" id="go-to-register">Cadastre-se</a>
+          </p>
+        </form>
+
+        <form id="register-form" class="auth-form hidden">
+          <h2>Criar nova conta</h2>
+          <div class="input-group">
+            <i class="fas fa-id-card"></i>
+            <input
+              type="text"
+              name="nome"
+              placeholder="Nome completo"
+              required
+            />
+          </div>
+          <div class="input-group">
+            <i class="fas fa-user"></i>
+            <input
+              type="text"
+              name="login"
+              placeholder="Nome de usuário"
+              required
+            />
+          </div>
+          <div class="input-group">
+            <i class="fas fa-envelope"></i>
+            <input
+              type="email"
+              name="email"
+              placeholder="Seu melhor e-mail"
+              required
+            />
+          </div>
+          <div class="input-group">
+            <i class="fas fa-lock"></i>
+            <input
+              type="password"
+              name="senha"
+              placeholder="Escolha uma senha"
+              required
+            />
+          </div>
+          <button type="submit" class="btn-primary">Criar Conta</button>
+          <p>Já possui conta? <a href="#" id="go-to-login">Faça login</a></p>
+        </form>
+      </div>
+    </div>
+
+    <script type="module" src="../../js/modules/auth.js"></script>
+  </body>
+</html>

@@ -1,0 +1,269 @@
+/* Paleta de Cores baseada na Sidebar (Wise Capital) */
+:root {
+  --primary-color: #0056b3;
+  --primary-hover: #004494;
+  --danger-color: #dc3545;
+  --danger-hover: #c82333;
+  --bg-color: #f8f9fa;
+  --card-bg: #ffffff;
+  --text-main: #333333;
+  --text-muted: #6c757d;
+  --border-color: #e9ecef;
+}
+
+.forum-container,
+.topic-container {
+  background-color: transparent;
+  padding: 20px 40px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* Cartões do Fórum */
+.forum-card,
+.comentario {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 20px;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+}
+
+.forum-card {
+  cursor: pointer;
+}
+
+.forum-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  border-color: #cce5ff;
+}
+
+.forum-card h2,
+.topic-container h1 {
+  color: var(--primary-color);
+  margin-top: 0;
+}
+
+/* Botões Padronizados */
+.btn-novo-topico {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-bottom: 25px;
+  transition:
+    background 0.3s,
+    transform 0.1s;
+  font-size: 15px;
+}
+
+.btn-novo-topico:hover {
+  background-color: var(--primary-hover);
+  transform: scale(1.02);
+}
+
+/* Ícones de Ação (Editar e Excluir) */
+.btn-icon {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 15px;
+  color: var(--text-muted);
+  transition: color 0.3s;
+  padding: 8px;
+  border-radius: 6px;
+}
+
+.btn-edit,
+.btn-edit-comment {
+  color: var(--text-muted);
+}
+.btn-edit:hover,
+.btn-edit-comment:hover {
+  color: var(--primary-color);
+  background-color: #e6f2ff;
+}
+
+.btn-delete-comment {
+  color: var(--text-muted);
+}
+.btn-delete-comment:hover {
+  color: var(--danger-color);
+  background-color: #ffe6e6;
+}
+
+/* Interações (Likes/Dislikes e Comentários) */
+.forum-actions,
+.comentario-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px solid var(--border-color);
+}
+
+.btn-action {
+  background-color: transparent;
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-size: 14px;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-action:hover {
+  background-color: var(--bg-color);
+  color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.comments-count {
+  color: var(--text-muted);
+  font-size: 14px;
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 500;
+}
+
+/* Formulário de Comentários */
+.form-comentario-container {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 35px;
+  background: var(--card-bg);
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+}
+
+.form-comentario-container input {
+  flex: 1;
+  padding: 14px 18px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 15px;
+  outline: none;
+  transition:
+    border-color 0.3s,
+    box-shadow 0.3s;
+}
+
+.form-comentario-container input:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(0, 86, 179, 0.1);
+}
+
+.btn-comentar {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 0 25px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-comentar:hover {
+  background-color: var(--primary-hover);
+}
+
+/* ==== ADIÇÕES PARA O FORMULÁRIO DE CRIAR TÓPICO (novo_topico.html) ==== */
+.form-container {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 30px;
+  max-width: 600px;
+  margin: 40px auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.form-container h2 {
+  color: var(--primary-color);
+  margin-top: 0;
+  margin-bottom: 25px;
+  font-size: 24px;
+  border-bottom: 2px solid var(--border-color);
+  padding-bottom: 10px;
+}
+
+#form-topico {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+#form-topico input,
+#form-topico textarea {
+  padding: 14px 18px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 15px;
+  outline: none;
+  transition:
+    border-color 0.3s,
+    box-shadow 0.3s;
+  font-family: inherit;
+  background-color: var(--bg-color);
+}
+
+#form-topico input:focus,
+#form-topico textarea:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(0, 86, 179, 0.1);
+  background-color: #fff;
+}
+
+.btn-submit {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 14px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 16px;
+  transition:
+    background 0.3s,
+    transform 0.1s;
+  margin-top: 10px;
+}
+
+.btn-submit:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-2px);
+}
+
+.btn-cancel {
+  text-align: center;
+  display: block;
+  margin-top: 5px;
+  color: var(--text-muted);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.btn-cancel:hover {
+  color: var(--danger-color);
+}

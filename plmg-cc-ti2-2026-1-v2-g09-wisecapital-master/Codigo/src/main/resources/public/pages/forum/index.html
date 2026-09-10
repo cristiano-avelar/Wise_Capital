@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wise Capital</title>
+    <link rel="stylesheet" href="../../assets/css/styles.css" />
+    <link rel="stylesheet" href="../../assets/css/forum.css" />
+    <script type="module" src="../../js/modules/sidebar.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <nav class="sidebar">
+      <div class="sidebar-header">
+        <img src="../../assets/img/logoazul.jpg" alt="Logo Wise Capital" />
+        <h2>Wise Capital</h2>
+      </div>
+
+      <ul class="sidebar-links">
+        <li>
+          <a href="../../index.html"><i class="fas fa-home"></i> Início</a>
+        </li>
+        <li>
+          <a href="../trilha/index.html"
+            ><i class="fas fa-map-signs"></i> Trilha</a
+          >
+        </li>
+        <li class="active">
+          <a href="../forum/index.html"
+            ><i class="fas fa-comments"></i> Fórum</a
+          >
+        </li>
+        <li>
+          <a href="../simulador/index.html"
+            ><i class="fas fa-chart-line"></i> Simulador</a
+          >
+        </li>
+        <li>
+          <a href="../biblioteca/index.html"
+            ><i class="fas fa-book-open"></i> Biblioteca</a
+          >
+        </li>
+        <li>
+          <a href="../noticias/index.html"
+            ><i class="fas fa-newspaper"></i> Notícias</a
+          >
+        </li>
+        <li>
+          <a href="../faq/index.html"
+            ><i class="fas fa-question-circle"></i> FAQ</a
+          >
+        </li>
+      </ul>
+
+      <div class="sidebar-footer">
+        <div class="user-info">
+          <i class="fas fa-user-circle"></i>
+          <span id="user-name">Carregando...</span>
+        </div>
+        <button id="btn-logout" class="btn-logout">
+          <i class="fas fa-sign-out-alt"></i> Sair
+        </button>
+      </div>
+    </nav>
+
+    <main class="main-content">
+      <div class="forum-container">
+        <h1>Fórum</h1>
+        <button
+          id="btn-novo-topico"
+          class="btn-novo-topico"
+          onclick="window.location.href = 'novo_topico.html'"
+          style="display: none"
+        >
+          + Novo Tópico
+        </button>
+        <div id="feed-forum"></div>
+      </div>
+    </main>
+    <script src="../../js/modules/forumIndex.js"></script>
+  </body>
+</html>

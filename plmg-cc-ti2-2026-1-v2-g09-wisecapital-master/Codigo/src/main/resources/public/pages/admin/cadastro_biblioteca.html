@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cadastrar Material - Wise Capital</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link rel="stylesheet" href="../../assets/css/styles.css" />
+  </head>
+  <body>
+    <main class="main-content" style="margin: 40px auto; max-width: 600px">
+      <div>
+        <a
+          href="../biblioteca/index.html"
+          style="text-decoration: none; color: #002d5b"
+          ><i class="fas fa-arrow-left"></i> Voltar à Biblioteca</a
+        >
+      </div>
+
+      <h2 style="margin-top: 20px">Cadastrar Novo Recurso de Estudo</h2>
+
+      <form
+        id="form-cadastro-biblioteca"
+        style="
+          background: white;
+          padding: 25px;
+          border-radius: 8px;
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+          margin-top: 20px;
+        "
+      >
+        <div style="margin-bottom: 15px">
+          <label style="display: block; font-weight: bold; margin-bottom: 5px"
+            >Título:</label
+          >
+          <input
+            type="text"
+            id="mat-titulo"
+            required
+            style="
+              width: 100%;
+              padding: 10px;
+              border: 1px solid #cbd5e1;
+              border-radius: 4px;
+            "
+          />
+        </div>
+
+        <div style="margin-bottom: 15px">
+          <label style="display: block; font-weight: bold; margin-bottom: 5px"
+            >Tipo de Material:</label
+          >
+          <select
+            id="mat-tipo"
+            style="
+              width: 100%;
+              padding: 10px;
+              border: 1px solid #cbd5e1;
+              border-radius: 4px;
+            "
+          >
+            <option value="TEXTO">Artigo / Texto</option>
+            <option value="VIDEO">Vídeo (YouTube)</option>
+          </select>
+        </div>
+
+        <div style="margin-bottom: 15px">
+          <label style="display: block; font-weight: bold; margin-bottom: 5px"
+            >Categoria:</label
+          >
+          <input
+            type="text"
+            id="mat-categoria"
+            placeholder="Ex: Renda Fixa, Ações"
+            required
+            style="
+              width: 100%;
+              padding: 10px;
+              border: 1px solid #cbd5e1;
+              border-radius: 4px;
+            "
+          />
+        </div>
+
+        <div style="margin-bottom: 15px">
+          <label style="display: block; font-weight: bold; margin-bottom: 5px"
+            >Link do Conteúdo (URL):</label
+          >
+          <input
+            type="url"
+            id="mat-url"
+            required
+            style="
+              width: 100%;
+              padding: 10px;
+              border: 1px solid #cbd5e1;
+              border-radius: 4px;
+            "
+          />
+        </div>
+
+        <div style="margin-bottom: 20px">
+          <label style="display: block; font-weight: bold; margin-bottom: 5px"
+            >Descrição Resumida:</label
+          >
+          <textarea
+            id="mat-descricao"
+            rows="4"
+            required
+            style="
+              width: 100%;
+              padding: 10px;
+              border: 1px solid #cbd5e1;
+              border-radius: 4px;
+              resize: vertical;
+            "
+          ></textarea>
+        </div>
+
+        <button
+          type="submit"
+          style="
+            background-color: #22c55e;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+          "
+        >
+          <i class="fas fa-save"></i> Publicar na Biblioteca
+        </button>
+      </form>
+    </main>
+
+    <script>
+      const isAdm = localStorage.getItem("usuario_adm") === "true";
+      if (!isAdm) {
+        alert("Acesso negado.");
+        window.location.href = "../biblioteca/index.html";
+      }
+
+      document
+        .getElementById("form-cadastro-biblioteca")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+
+          const titulo = document.getElementById("mat-titulo").value;
+          const tipo = document.getElementById("mat-tipo").value;
+          const categoria = document.getElementById("mat-categoria").value;
+          const urlConteudo = document.getElementById("mat-url").value;
+          const descricao = document.getElementById("mat-descricao").value;
+
+          try {
+            await fetch("/biblioteca/insert", {
+              method: "POST",
+              headers: { "Content-Type": "application/x-www-form-urlencoded" },
+              body: `titulo=${encodeURIComponent(titulo)}&tipo=${encodeURIComponent(tipo)}&categoria=${encodeURIComponent(categoria)}&urlConteudo=${encodeURIComponent(urlConteudo)}&descricao=${encodeURIComponent(descricao)}`,
+            });
+
+            alert("Material publicado com sucesso!");
+            window.location.href = "../biblioteca/index.html";
+          } catch (error) {
+            console.error(error);
+            alert("Erro ao salvar material.");
+          }
+        });
+    </script>
+  </body>
+</html>
